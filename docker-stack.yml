@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    image: shadrus/swarmlesssonapi:0.1
+    image: shadrus/swarmlesssonapi:0.2
     ports:
       - 8090:80    
     deploy:

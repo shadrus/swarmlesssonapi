@@ -6,12 +6,13 @@ import (
 	"os"
 )
 
+// ServiceInfo is the model for application version info
 type ServiceInfo struct {
 	Version string
 }
 
-func hello(w http.ResponseWriter, req *http.Request) {
-	info := ServiceInfo{Version: "0.1"}
+func version(w http.ResponseWriter, req *http.Request) {
+	info := ServiceInfo{Version: "0.2"}
 	js, err := json.Marshal(info)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -21,12 +22,17 @@ func hello(w http.ResponseWriter, req *http.Request) {
 	w.Write(js)
 }
 
-func crash(w http.ResponseWriter, req *http.Request) {
+func exit(w http.ResponseWriter, req *http.Request) {
 	os.Exit(0)
 }
 
+func crash(w http.ResponseWriter, req *http.Request) {
+	os.Exit(1)
+}
+
 func main() {
-	http.HandleFunc("/version", hello)
+	http.HandleFunc("/version", version)
+	http.HandleFunc("/exit", exit)
 	http.HandleFunc("/crash", crash)
 	http.ListenAndServe(":80", nil)
 }
