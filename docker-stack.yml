@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    image: shadrus/swarmlesssonapi:0.1
+    ports:
+      - 80:8090    
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: json-file
+      options:
+        'max-size': '10m'
+        'max-file': '5'
