@@ -2,9 +2,11 @@ version: '3'
 
 services:
   api:
-    image: shadrus/swarmlesssonapi:0.2
+    image: shadrus/swarmlesssonapi:0.3
     ports:
-      - 8090:80    
+      - 8090:80
+    environment:
+      - version=0.2      
     deploy:
       replicas: 1
       update_config:
@@ -12,8 +14,14 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
+    secrets:
+      - swarm-lessons-token
     logging:
       driver: json-file
       options:
         'max-size': '10m'
         'max-file': '5'
+
+secrets:
+  swarm-lessons-token:
+    external: true
