@@ -31,7 +31,7 @@ func token(w http.ResponseWriter, req *http.Request) {
 
 // Ручка version получает номер версии из переменных окружения.
 func version(w http.ResponseWriter, req *http.Request) {
-	info := ServiceInfo{Version: os.Getenv("vesrion")}
+	info := ServiceInfo{Version: os.Getenv("version")}
 	js, err := json.Marshal(info)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
