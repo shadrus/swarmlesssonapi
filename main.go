@@ -6,13 +6,19 @@ import (
 	"os"
 )
 
+var (
+	serviceVersion = "0.2"
+	token          = "55555dfhigf8-ergush347864t88457gje"
+	database       = "db_user:password@tcp(localhost:3306)/my_db"
+)
+
 // ServiceInfo is the model for application version info
 type ServiceInfo struct {
 	Version string
 }
 
 func version(w http.ResponseWriter, req *http.Request) {
-	info := ServiceInfo{Version: "0.2"}
+	info := ServiceInfo{Version: serviceVersion}
 	js, err := json.Marshal(info)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
