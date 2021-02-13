@@ -2,11 +2,11 @@ version: '3'
 
 services:
   api:
-    image: shadrus/swarmlesssonapi:0.3
+    image: shadrus/swarmlesssonapi:0.4
     ports:
       - 8090:80
     environment:
-      - version=0.2      
+      - version=0.4      
     deploy:
       replicas: 1
       update_config:
