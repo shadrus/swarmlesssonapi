@@ -13,6 +13,10 @@ type ServiceInfo struct {
 	Version string
 }
 
+var (
+	info = ServiceInfo{Version: os.Getenv("version")}
+)
+
 // Ручка токен получает токен из секрета Docker, сверяет с токеном из запроса.
 func token(w http.ResponseWriter, req *http.Request) {
 	// /run/secrets/<secret_name> for secrets and /<config-name> for configs
