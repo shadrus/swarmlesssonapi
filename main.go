@@ -27,7 +27,7 @@ func token(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	dockerSecrets, _ := secrets.NewDockerSecrets("")
-	token, _ := dockerSecrets.Get("token")
+	token, _ := dockerSecrets.Get("swarm-lessons-token")
 	if token != reqToken[0] {
 		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
 	}
